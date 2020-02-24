@@ -44,7 +44,7 @@ class Device(Configurable):
 
     def format_url(self):
         parts = [
-            "{0:s}://{1:s}".format(self.vendor.__name__.split(".").pop(), self.name),
+            "{:s}://{:s}".format(self.vendor.__name__.split(".").pop(), self.name),
         ]
         parts.append(self.vendor.display_device(self))
         return "".join(parts)
@@ -60,7 +60,7 @@ class Device(Configurable):
             extra = config.Read(name=extra_ini)
             self.extra.store(extra)
             extra.save()
-        super(Device, self).store(config)
+        super().store(config)
 
     @classmethod
     def FromImport(klass, candidate, config=None):

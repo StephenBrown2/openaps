@@ -23,10 +23,10 @@ class AliasApp(cli.ConfigApp):
         self.commands.configure_commands(self.parser)
 
     def prolog(self):
-        super(AliasApp, self).prolog()
+        super().prolog()
 
     def epilog(self):
-        super(AliasApp, self).epilog()
+        super().epilog()
 
     def run(self, args):
         # print(self.commands)

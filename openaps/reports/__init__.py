@@ -26,7 +26,7 @@ class ReportAction(Subcommand):
         self.reports = get_report_map(self.config)
         choices = sorted(list(self.reports.keys()))
         self.parser.add_argument("report", choices=choices)
-        super(ReportAction, self).setup_application()
+        super().setup_application()
 
 
 class ReportManagementActions(CommandMapApp):
@@ -43,7 +43,7 @@ class ReportManagementActions(CommandMapApp):
         return [add, remove, show, invoke]
 
 
-class Exported(object):
+class Exported:
     Configurable = Report
 
     @classmethod

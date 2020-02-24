@@ -1,7 +1,7 @@
 import argparse
 
 
-class Subcommand(object):
+class Subcommand:
     formatter_class = argparse.RawDescriptionHelpFormatter
 
     def __init__(self, method=None, parent=None):

@@ -18,7 +18,7 @@ class AliasAction(Subcommand):
         self.aliases = get_alias_map(self.config)
         choices = sorted(list(self.aliases.keys()))
         self.parser.add_argument("name", choices=choices)
-        super(AliasAction, self).setup_application()
+        super().setup_application()
 
 
 class AliasManagement(CommandMapApp):
@@ -35,7 +35,7 @@ class AliasManagement(CommandMapApp):
         return [add, remove, show]
 
 
-class Exported(object):
+class Exported:
     Configurable = Alias
 
     @classmethod

@@ -34,7 +34,7 @@ class Config(SafeConfigParser):
         if self._defaults:
             write("[%s]\n" % DEFAULTSECT)
             for (key, value) in list(self._defaults.items()):
-                write("%s = %s\n" % (key, str(value).replace("\n", "\n\t")))
+                write("{} = {}\n".format(key, str(value).replace("\n", "\n\t")))
             write("\n")
         for section in self._sections:
             write("[%s]\n" % section)

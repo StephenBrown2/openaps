@@ -8,7 +8,7 @@ from openaps.devices.device import Device
 from openaps.reports.report import Report
 
 
-class Formatter(object):
+class Formatter:
     def __init__(self, app):
         self.app = app
 

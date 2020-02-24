@@ -25,7 +25,7 @@ class VendorAction(Subcommand):
         self.vendors = get_vendor_map(self.config)
         choices = sorted(list(self.vendors.keys()))
         self.parser.add_argument("name", choices=choices)
-        super(VendorAction, self).setup_application()
+        super().setup_application()
 
 
 class VendorManagementActions(CommandMapApp):
@@ -42,7 +42,7 @@ class VendorManagementActions(CommandMapApp):
         return [add, remove, show]
 
 
-class Exported(object):
+class Exported:
     Configurable = Vendor
 
     @classmethod

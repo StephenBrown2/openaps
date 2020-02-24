@@ -53,7 +53,7 @@ class ReportToolApp(cli.ConfigApp):
         self.parser.add_argument(
             "--version",
             action="version",
-            version="%s %s" % ("%(prog)s", openaps.__version__),
+            version="{} {}".format("%(prog)s", openaps.__version__),
         )
 
         self.configure_reports()
@@ -68,10 +68,10 @@ class ReportToolApp(cli.ConfigApp):
         self.commands.configure_commands(self.parser)
 
     def prolog(self):
-        super(ReportToolApp, self).prolog()
+        super().prolog()
 
     def epilog(self):
-        super(ReportToolApp, self).epilog()
+        super().epilog()
 
     def run(self, args):
         # print(self.inputs)

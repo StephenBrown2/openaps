@@ -145,7 +145,7 @@ openaps report commands map openaps use commands to filenames:
         self.parser.add_argument(
             "--version",
             action="version",
-            version="%s %s" % ("%(prog)s", openaps.__version__),
+            version="{} {}".format("%(prog)s", openaps.__version__),
         ).completer = no_complete
         self.parser.add_argument(
             "command",

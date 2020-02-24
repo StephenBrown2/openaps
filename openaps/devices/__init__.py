@@ -47,7 +47,7 @@ def configure_commands(parser, parent=None):
     return commands
 
 
-class Exported(object):
+class Exported:
     Configurable = Device
 
     @classmethod

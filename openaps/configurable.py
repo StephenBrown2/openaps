@@ -1,7 +1,7 @@
 import json
 
 
-class Configurable(object):
+class Configurable:
     name = None
     required = []
     optional = []
@@ -13,7 +13,7 @@ class Configurable(object):
         self.fields = kwargs
 
     def section_name(self):
-        return '%s "%s"' % (self.prefix, self.name)
+        return '{} "{}"'.format(self.prefix, self.name)
 
     def add_option(self, k, v):
         self.fields[k] = v

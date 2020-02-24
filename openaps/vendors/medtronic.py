@@ -89,7 +89,7 @@ class MedtronicTask(scan):
 
     def write_session_file(self, session):
         with open(
-            self.device.get("session", "{0}-session.json".format(self.device.name)),
+            self.device.get("session", "{}-session.json".format(self.device.name)),
             "w+",
         ) as io:
             json.dump(session, io)
@@ -97,7 +97,7 @@ class MedtronicTask(scan):
     def read_session_file(self):
         session = dict()
         with open(
-            self.device.get("session", "{0}-session.json".format(self.device.name)),
+            self.device.get("session", "{}-session.json".format(self.device.name)),
             "a+",
         ) as io:
             try:
@@ -221,7 +221,7 @@ class config(MedtronicTask):
             dirty = True
         self.save_session = False
         if args.reset_expires:
-            print("resetting {0} session".format(self.device.name))
+            print("resetting {} session".format(self.device.name))
             self.session.update(model="", expires=datetime.now())
             self.save_session = True
 
@@ -440,7 +440,7 @@ class suspend_pump(SameNameCommand):
     """ Suspend pumping. """
 
     def main(self, args, app):
-        result = super(suspend_pump, self).main(args, app)
+        result = super().main(args, app)
         result.update(enacted_at=datetime.now())
         return result
 
@@ -560,7 +560,7 @@ class set_clock(InputProgramRequired):
         if not program.get("clock", None):
             print("Bad input")
             raise Exception(
-                "Bad input, missing clock definition: {0}".format(program.get("clock"))
+                "Bad input, missing clock definition: {}".format(program.get("clock"))
             )
         return self.pump.model.set_clock(**program)
         # return dict(test_ok=dict(**program))

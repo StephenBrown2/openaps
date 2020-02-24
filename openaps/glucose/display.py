@@ -1,4 +1,4 @@
-class Display(object):
+class Display:
     """
         Round Glucose values for display, so that they are consistent in
         all OpenAPS apps

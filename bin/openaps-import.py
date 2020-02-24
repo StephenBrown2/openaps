@@ -53,10 +53,10 @@ class ImportToolApp(cli.ConfigApp):
         )
 
     def prolog(self):
-        super(ImportToolApp, self).prolog()
+        super().prolog()
 
     def epilog(self):
-        super(ImportToolApp, self).epilog()
+        super().epilog()
 
     def Make(self, configurable):
         Configurable = self.MAP.get(configurable.get("type"), None)

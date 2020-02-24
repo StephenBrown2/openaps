@@ -1,4 +1,4 @@
-class Registry(object):
+class Registry:
     def __init__(self):
         self.__USES__ = {}
 

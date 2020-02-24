@@ -16,7 +16,7 @@ def default_close_stream(reporter):
     reporter.output.close()
 
 
-class Reporter(object):
+class Reporter:
     """
     """
 
@@ -48,7 +48,7 @@ class Reporter(object):
 
 
 def get_reporter_map():
-    return dict([(r.__name__.split(".").pop().lower(), r) for r in get_reporters()])
+    return {r.__name__.split(".").pop().lower(): r for r in get_reporters()}
 
 
 def get_reporters():

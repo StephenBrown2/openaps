@@ -19,7 +19,7 @@ def get_builtins():
     return out
 
 
-class RunnableAlias(object):
+class RunnableAlias:
     def __init__(self, spec, parent):
         self.spec = spec
         self.parent = parent

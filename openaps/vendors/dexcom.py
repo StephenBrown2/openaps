@@ -129,7 +129,7 @@ class UpdateTime(scan):
         if not program.get("clock", None) or "offset" not in program:
             print("Bad input")
             raise Exception(
-                "Bad input, missing clock definition: {0}".format(program.get("clock"))
+                "Bad input, missing clock definition: {}".format(program.get("clock"))
             )
         result = self.dexcom.WriteDisplayTimeOffset(offset=program["offset"])
         new_offset = self.dexcom.ReadDisplayTimeOffset()
@@ -171,7 +171,7 @@ class WriteChargerCurrentSetting(scan):
 
         parser.add_argument("--status", dest="status", choices=self.MAP)
         for key in self.MAP:
-            flag = "--{0}".format(key)
+            flag = "--{}".format(key)
             parser.add_argument(flag, dest="status", action="store_const", const=key)
 
     def main(self, args, app):
@@ -180,7 +180,7 @@ class WriteChargerCurrentSetting(scan):
         requested = dict(**params)
         if not status:
             raise Exception(
-                "requested ChargeCurrent setting unknown: {0}".format(status)
+                "requested ChargeCurrent setting unknown: {}".format(status)
             )
         result = self.dexcom.WriteChargerCurrentSetting(status)
         updated = self.dexcom.ReadChargerCurrentSetting()
@@ -347,7 +347,7 @@ def none_from_ini(field):
     return field
 
 
-class GapFiller(object):
+class GapFiller:
     @classmethod
     def add_argument(cls, parser):
         parser.add_argument("-G", "--gaps", help="")

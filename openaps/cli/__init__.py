@@ -6,7 +6,7 @@ import textwrap
 import argcomplete
 
 
-class Base(object):
+class Base:
 
     always_complete_options = True
 
@@ -101,10 +101,10 @@ class ConfigApp(Base):
             for diff in diffs:
                 self.repo.git.add([diff.b_path], write_extension_data=False)
             git = self.repo.git
-            msg = """{0:s} {1:s}
+            msg = """{:s} {:s}
 
       TODO: better change descriptions
-      {2:s}
+      {:s}
       """.format(
                 self.parser.prog, " ".join(sys.argv[1:]), " ".join(sys.argv)
             )

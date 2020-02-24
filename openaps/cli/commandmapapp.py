@@ -1,7 +1,7 @@
 from .subcommand import Subcommand
 
 
-class CommandMapApp(object):
+class CommandMapApp:
 
     Subcommand = Subcommand
     commands = {}

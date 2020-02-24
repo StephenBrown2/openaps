@@ -58,7 +58,7 @@ def get_configurable_devices(ctx):
     return vendors
 
 
-class Exported(object):
+class Exported:
     Configurable = Vendor
 
     @classmethod

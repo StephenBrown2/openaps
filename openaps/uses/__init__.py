@@ -30,7 +30,7 @@ class DeviceUsageTask(Subcommand):
 
     def setup_application(self):
         self.method.parser = self.parser
-        super(DeviceUsageTask, self).setup_application()
+        super().setup_application()
         # self.method.setup_application( )
         # self.configure_parser(self.parser)
 
@@ -50,7 +50,7 @@ class DeviceUsageMap(CommandMapApp):
     def __init__(self, device=None, parent=None):
         self.device = device
         self.usages = all_uses(parent.parent.config, device)
-        super(DeviceUsageMap, self).__init__(parent)
+        super().__init__(parent)
 
     def get_help(self):
         return """Usage Details"""
@@ -86,7 +86,7 @@ class UseDeviceTask(Subcommand):
     """
 
     def __init__(self, method=None, parent=None):
-        super(UseDeviceTask, self).__init__(method=method.vendor, parent=parent)
+        super().__init__(method=method.vendor, parent=parent)
         self.device = method
         self.method = DeviceUsageMap(self.device, self)
         # self.method = method
@@ -122,7 +122,7 @@ class UseDeviceCommands(CommandMapApp):
         self.config = config
         if parent and getattr(parent, "config", config) is None:
             self.config = parent.config
-        super(UseDeviceCommands, self).__init__(parent)
+        super().__init__(parent)
 
     def get_title(self):
         return "Known Devices Menu"
