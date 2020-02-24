@@ -1,7 +1,9 @@
-import sys, os
 import argparse
-import argcomplete
+import os
+import sys
 import textwrap
+
+import argcomplete
 
 
 class Base(object):
@@ -84,7 +86,7 @@ class ConfigApp(Base):
         self.create_git_commit()
 
     def git_repo(self):
-        from git import Repo, GitCmdObjectDB
+        from git import GitCmdObjectDB, Repo
 
         self.repo = getattr(self, "repo", Repo(os.getcwd(), odbt=GitCmdObjectDB))
         return self.repo

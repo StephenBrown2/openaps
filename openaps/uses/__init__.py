@@ -1,5 +1,5 @@
-from openaps.cli.subcommand import Subcommand
 from openaps.cli.commandmapapp import CommandMapApp
+from openaps.cli.subcommand import Subcommand
 
 
 def no_uses(device, config):

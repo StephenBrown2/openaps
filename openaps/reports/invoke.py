@@ -1,12 +1,13 @@
 """
 invoke   - generate a report
 """
-
-from openaps.reports.report import Report
-from openaps import uses
-from . import reporters
-import sys
 import argparse
+import sys
+
+from openaps import uses
+from openaps.reports.report import Report
+
+from . import reporters
 
 
 def configure_app(app, parser):

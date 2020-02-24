@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
-
+import argparse
 import sys
-import argparse, argcomplete
-import openaps
 
-from openaps import cli
-from openaps import devices
-from openaps import uses
+import argcomplete
+import openaps
+from openaps import cli, devices, uses
 from openaps.reports import reporters
 from openaps.reports.report import Report
 

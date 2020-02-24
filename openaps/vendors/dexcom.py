@@ -1,22 +1,20 @@
 """
 Dexcom - openaps driver for dexcom
 """
+import argparse
+import itertools
+import json
+import socket
+import time
+from datetime import datetime, timedelta
 
-from openaps.uses.use import Use
-from openaps.uses.registry import Registry
-import dexcom_reader
-from dexcom_reader import readdata
-from dexcom_reader import database_records
-from datetime import timedelta
-from datetime import datetime
 import dateutil
+import dexcom_reader
 from dateutil import relativedelta
 from dateutil.parser import parse
-import json
-import itertools
-import time
-import argparse
-import socket
+from dexcom_reader import database_records, readdata
+from openaps.uses.registry import Registry
+from openaps.uses.use import Use
 
 
 def set_config(args, device):

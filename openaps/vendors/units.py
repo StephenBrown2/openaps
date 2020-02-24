@@ -1,14 +1,12 @@
 """
 Units - units tool for openaps
 """
-
-from openaps.uses.use import Use
-from openaps.uses.registry import Registry
+import argparse
+import json
 
 from openaps.glucose.convert import Convert as GlucoseConvert
-
-import json
-import argparse
+from openaps.uses.registry import Registry
+from openaps.uses.use import Use
 
 
 def set_config(args, device):

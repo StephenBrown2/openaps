@@ -1,5 +1,6 @@
-from . import base, text, stdout, JSON
 import os
+
+from . import JSON, base, stdout, text
 
 
 def default_prep_stream(reporter):

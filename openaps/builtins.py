@@ -1,9 +1,7 @@
-from . import init
-from . import alias
 import shlex
-from . import cli
-
 from subprocess import call
+
+from . import alias, cli, init
 
 
 class BuiltinApp(cli.ConfigApp):

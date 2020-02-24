@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
-
-import sys
-import argparse, argcomplete
+import argparse
 import json
-import openaps
+import sys
 
-from openaps import cli
+import pkg_resources
+
+import argcomplete
+import openaps
+from openaps import cli, uses
+from openaps.alias import Alias
 from openaps.devices import Device
 from openaps.reports import Report
 from openaps.vendors import Vendor
-from openaps.alias import Alias
-from openaps import uses
-
-import pkg_resources
 
 
 def get_importable():

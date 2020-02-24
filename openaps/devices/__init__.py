@@ -1,7 +1,7 @@
-from . import add, remove, show
-
-from openaps.cli.subcommand import Subcommand
 from openaps import vendors
+from openaps.cli.subcommand import Subcommand
+
+from . import add, remove, show
 from .device import Device
 
 

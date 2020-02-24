@@ -1,9 +1,10 @@
 """
 add    - add a new device configuration
 """
+import sys
+
 from openaps import vendors
 from openaps.devices.device import Device
-import sys
 
 
 def configure_app(app, parser):

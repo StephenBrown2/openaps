@@ -1,7 +1,6 @@
 """
 Remove vendor plugin from openaps-environment
 """
-
 from .vendor import Vendor
 
 

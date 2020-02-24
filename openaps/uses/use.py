@@ -2,7 +2,6 @@
 use - module for openaps devices to re-use
 
 """
-
 from openaps.cli.subcommand import Subcommand
 
 

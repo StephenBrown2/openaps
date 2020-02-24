@@ -1,12 +1,11 @@
 """
 show   - show all reports
 """
-
-from openaps.devices.device import Device
-from openaps.reports.report import Report
+import argparse
 
 from openaps.cli import helpers
-import argparse
+from openaps.devices.device import Device
+from openaps.reports.report import Report
 
 
 class Formatter(object):

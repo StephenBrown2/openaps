@@ -1,8 +1,7 @@
-from . import add, remove, show
-
-from openaps.cli.subcommand import Subcommand
 from openaps.cli.commandmapapp import CommandMapApp
+from openaps.cli.subcommand import Subcommand
 
+from . import add, remove, show
 from .alias import Alias
 
 

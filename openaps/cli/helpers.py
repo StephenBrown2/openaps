@@ -1,5 +1,6 @@
-from openaps.config import Config
 import json
+
+from openaps.config import Config
 
 
 def install_show_arguments(parser):

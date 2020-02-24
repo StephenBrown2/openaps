@@ -1,8 +1,9 @@
 """
 remove - remove a device configuration
 """
-from .report import Report
 import sys
+
+from .report import Report
 
 
 def main(args, app):

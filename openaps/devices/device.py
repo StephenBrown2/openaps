@@ -1,5 +1,5 @@
-import json
 import importlib
+import json
 import site
 
 from openaps.configurable import Configurable

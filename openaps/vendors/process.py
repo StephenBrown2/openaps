@@ -1,17 +1,18 @@
 """
 process - a fake vendor to run arbitrary commands
 """
-
-import sys, os
-import shlex
-from subprocess import check_output, call, PIPE
-import subprocess
-import json
-
 import argparse
-from .plugins.vendor import Vendor
-from openaps.uses.use import Use
+import json
+import os
+import shlex
+import subprocess
+import sys
+from subprocess import PIPE, call, check_output
+
 from openaps.uses.registry import Registry
+from openaps.uses.use import Use
+
+from .plugins.vendor import Vendor
 
 # create a usage registry/decorator
 use = Registry()

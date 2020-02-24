@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
-
+import argparse
 import sys
-import argparse, argcomplete
-import openaps
 
-from openaps import cli
-from openaps import devices
-from openaps import reports
-from openaps import uses
+import argcomplete
+import openaps
+from openaps import cli, devices, reports, uses
 
 
 class ReportToolApp(cli.ConfigApp):

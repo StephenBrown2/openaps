@@ -1,8 +1,7 @@
-from . import dexcom, medtronic, process, units
-
-from openaps.cli.subcommand import Subcommand
 from openaps.cli.commandmapapp import CommandMapApp
+from openaps.cli.subcommand import Subcommand
 
+from . import dexcom, medtronic, process, units
 from .plugins.vendor import Vendor
 
 

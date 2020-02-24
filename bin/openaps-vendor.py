@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
+import argparse
+import os
+import os.path
+import sys
 
-import sys, os, os.path
-import argparse, argcomplete
+import argcomplete
 import openaps
-
 from openaps import cli
 from openaps.vendors import plugins
 

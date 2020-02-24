@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
+import sys
 
 import openaps
-from openaps import cli
-from openaps import alias
-import sys
+from openaps import alias, cli
 
 
 class AliasApp(cli.ConfigApp):

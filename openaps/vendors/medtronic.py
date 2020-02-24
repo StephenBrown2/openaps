@@ -1,17 +1,18 @@
 """
 Medtronic - openaps driver for Medtronic
 """
-from openaps.uses.use import Use
-from openaps.uses.registry import Registry
-from openaps.configurable import Configurable
-from openaps.glucose.convert import Convert as GlucoseConvert
-import decocare
 import argparse
 import json
-from decocare import stick, session, link, commands, history
 from datetime import datetime
+
+import decocare
 from dateutil import relativedelta
 from dateutil.parser import parse
+from decocare import commands, history, link, session, stick
+from openaps.configurable import Configurable
+from openaps.glucose.convert import Convert as GlucoseConvert
+from openaps.uses.registry import Registry
+from openaps.uses.use import Use
 
 
 def configure_use_app(app, parser):

@@ -2,8 +2,8 @@
 Show/list vendor plugins
 
 """
-
 from openaps.cli import helpers
+
 from .vendor import Vendor
 
 

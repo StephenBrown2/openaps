@@ -1,7 +1,6 @@
 """
 Add a new vendor plugin to openaps-environment.
 """
-
 from .vendor import Vendor
 
 

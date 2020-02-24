@@ -1,6 +1,6 @@
-from configparser import SafeConfigParser
-import re
 import os
+import re
+from configparser import SafeConfigParser
 
 
 class Config(SafeConfigParser):

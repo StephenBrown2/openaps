@@ -1,4 +1,5 @@
 import json
+
 from openaps.configurable import Configurable
 
 

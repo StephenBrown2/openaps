@@ -1,9 +1,10 @@
 """
 remove - remove a device configuration
 """
+import sys
+
 from openaps import vendors
 from openaps.devices.device import Device
-import sys
 
 
 def main(args, app):

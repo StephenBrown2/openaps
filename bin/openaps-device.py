@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
+import argparse
+import os
+import os.path
+import sys
 
-import sys, os, os.path
-import argparse, argcomplete
+import argcomplete
 import openaps
-
-from openaps import cli
-from openaps import devices
+from openaps import cli, devices
 
 
 class ToolsApp(cli.ConfigApp):

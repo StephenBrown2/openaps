@@ -3,15 +3,14 @@
 """
 
 """
+import argparse
+import os
+import sys
 from subprocess import call
 
-import sys, os
-import argparse
 import argcomplete
 import openaps
-from openaps import cli
-from openaps import builtins
-
+from openaps import builtins, cli
 
 COMMON_COMMANDS = ["init", "alias", "help", "use", "report", "device", "vendor"]
 

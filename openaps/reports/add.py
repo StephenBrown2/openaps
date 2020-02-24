@@ -1,11 +1,13 @@
 """
 add    - add a new report configuration
 """
+import sys
+
 from openaps import uses
 from openaps.devices.device import Device
-from .report import Report
+
 from . import reporters
-import sys
+from .report import Report
 
 
 def configure_app(app, parser):
