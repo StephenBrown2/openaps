@@ -1,4 +1,3 @@
-
 class Convert(object):
     """
         How to convert from mg/dL (World Wide format) to mmol/L (mostly UK

@@ -1,4 +1,3 @@
-
 """
 Release notes:
 
@@ -7,5 +6,4 @@ Release notes:
           python environment.  Also, rely more on json import/export
           of configuration.  Also, variety of git tweaks.
 """
-__version__ = '0.1.6-dev'
-
+__version__ = "0.1.6-dev"

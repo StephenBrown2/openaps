@@ -9,8 +9,10 @@ from openaps import cli
 from openaps import devices
 from openaps import reports
 from openaps import uses
-class ReportToolApp (cli.ConfigApp):
-  """ openaps-report - configure reports
+
+
+class ReportToolApp(cli.ConfigApp):
+    """ openaps-report - configure reports
 
   Manage which devices produce which reports.
 
@@ -42,41 +44,47 @@ class ReportToolApp (cli.ConfigApp):
                    <action> <name>
 
 
-  """
+    """
 
-  name = 'report'
-  def configure_parser (self, parser):
-    self.read_config( )
-    available = devices.get_device_map(self.config)
-    self.devices = available
-    choices = sorted(list(available.keys( )))
-    self.parser.add_argument('--version', action='version', version='%s %s' % ('%(prog)s', openaps.__version__))
+    name = "report"
 
-    self.configure_reports( )
+    def configure_parser(self, parser):
+        self.read_config()
+        available = devices.get_device_map(self.config)
+        self.devices = available
+        choices = sorted(list(available.keys()))
+        self.parser.add_argument(
+            "--version",
+            action="version",
+            version="%s %s" % ("%(prog)s", openaps.__version__),
+        )
 
-  def configure_reports (self):
-    self.actions = reports.ReportManagementActions(parent=self)
-    self.actions.configure_commands(self.parser)
-  def configure_devices (self):
-    allowed = [ ]
-    self.commands = uses.UseDeviceCommands(self.devices, parent=self)
-    self.commands.configure_commands(self.parser)
-  def prolog (self):
-    super(ReportToolApp, self).prolog( )
+        self.configure_reports()
 
-  def epilog (self):
-    super(ReportToolApp, self).epilog( )
+    def configure_reports(self):
+        self.actions = reports.ReportManagementActions(parent=self)
+        self.actions.configure_commands(self.parser)
 
-  def run (self, args):
-    # print(self.inputs)
-    # print(args)
-    app = self.actions.selected(args)
-    output = app(args, self)
-    # print(output)
+    def configure_devices(self):
+        allowed = []
+        self.commands = uses.UseDeviceCommands(self.devices, parent=self)
+        self.commands.configure_commands(self.parser)
+
+    def prolog(self):
+        super(ReportToolApp, self).prolog()
+
+    def epilog(self):
+        super(ReportToolApp, self).epilog()
+
+    def run(self, args):
+        # print(self.inputs)
+        # print(args)
+        app = self.actions.selected(args)
+        output = app(args, self)
+        # print(output)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     app = ReportToolApp(None)
-    app( )
-
+    app()

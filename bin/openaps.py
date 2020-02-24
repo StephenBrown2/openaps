@@ -13,39 +13,42 @@ from openaps import cli
 from openaps import builtins
 
 
-COMMON_COMMANDS = [ 'init', 'alias', 'help', 'use',
-                    'report', 'device', 'vendor' ]
-def complete_args (prefix, parsed_args, action, **kwargs):
-  # argcomplete.debug("parsed_args", parsed_args)
-  compline = os.environ['COMP_LINE']
-  argcomplete.debug("compline", compline)
+COMMON_COMMANDS = ["init", "alias", "help", "use", "report", "device", "vendor"]
 
-  point = int(os.environ['COMP_POINT'])
-  # argcomplete.debug("COMP_POINT", point)
-  argcomplete.debug("parsed_args", parsed_args)
-  if parsed_args.command is None:
-    others = sorted(list(builtins.get_builtins( ).keys( )) + COMMON_COMMANDS)
-    return [ ] or action.choices or others
-  # if True or parsed_args.command not in ['help', None]:
-  # return [ 'debug' ]
-  shell_cmd = ['openaps-%s' % parsed_args.command ] + parsed_args.args + [ prefix ]
-  other_prog = shell_cmd[0]
-  # point = len(parsed_args.command)
-  # os.environ['COMP_POINT'] = str(point + len(' '.join([ ] + shell_cmd[2:])))
-  old_name = compline.split(' ')
-  compline = ' '.join([other_prog] + parsed_args.args + [ prefix ])
-  os.environ['COMP_LINE'] = compline
-  os.environ['COMP_POINT'] = str(len(compline))
-  os.environ['PROGNAME'] = other_prog
-  argcomplete.debug("subshell", shell_cmd, list(os.environ.keys( )))
-  os.execvp(shell_cmd[0], shell_cmd[1:])
-  sys.exit(0)
 
-def no_complete (prefix, parsed_args, action, **kwargs):
-  return None
+def complete_args(prefix, parsed_args, action, **kwargs):
+    # argcomplete.debug("parsed_args", parsed_args)
+    compline = os.environ["COMP_LINE"]
+    argcomplete.debug("compline", compline)
 
-class BaseApp (cli.Base):
-  """
+    point = int(os.environ["COMP_POINT"])
+    # argcomplete.debug("COMP_POINT", point)
+    argcomplete.debug("parsed_args", parsed_args)
+    if parsed_args.command is None:
+        others = sorted(list(builtins.get_builtins().keys()) + COMMON_COMMANDS)
+        return [] or action.choices or others
+    # if True or parsed_args.command not in ['help', None]:
+    # return [ 'debug' ]
+    shell_cmd = ["openaps-%s" % parsed_args.command] + parsed_args.args + [prefix]
+    other_prog = shell_cmd[0]
+    # point = len(parsed_args.command)
+    # os.environ['COMP_POINT'] = str(point + len(' '.join([ ] + shell_cmd[2:])))
+    old_name = compline.split(" ")
+    compline = " ".join([other_prog] + parsed_args.args + [prefix])
+    os.environ["COMP_LINE"] = compline
+    os.environ["COMP_POINT"] = str(len(compline))
+    os.environ["PROGNAME"] = other_prog
+    argcomplete.debug("subshell", shell_cmd, list(os.environ.keys()))
+    os.execvp(shell_cmd[0], shell_cmd[1:])
+    sys.exit(0)
+
+
+def no_complete(prefix, parsed_args, action, **kwargs):
+    return None
+
+
+class BaseApp(cli.Base):
+    """
   openaps - openaps: a toolkit for DIY artificial pancreas system
 
   Utilities for developing an artificial pancreas system.
@@ -133,38 +136,55 @@ openaps report commands map openaps use commands to filenames:
   All commands support tab completion, and -h help options to help
   explore the live help system.
 
-  """
-  always_complete_options = False
-  def configure_parser (self, parser):
-    self.parser.add_argument('-c', nargs=2).completer = no_complete
-    self.parser.add_argument('-C', '--config', default=None).completer = no_complete
-    self.parser.add_argument('--version', action='version', version='%s %s' % ('%(prog)s', openaps.__version__)).completer = no_complete
-    self.parser.add_argument('command', nargs='?'
-                            # , choices=['init', 'alias', 'help', 'get', 'suggest', 'enact' ]
-                            , default=None).completer = complete_args
-    self.parser.add_argument('args', nargs=argparse.REMAINDER).completer = complete_args
+    """
 
-  def run (self, args):
-    if args.config:
-      os.environ['OPENAPS_CONFIG'] = args.config
-      os.chdir(os.path.dirname(args.config))
-    if args.command in ['help', None]:
-      self.parser.print_help( )
-    elif builtins.is_builtin(args.command):
-      builtins.dispatch(args, self)
-    elif args.command in ['get', 'suggest', ]:
-      exit(call(['openaps-%s' % args.command ] + args.args))
-    elif args.command:
-      try:
-        exit(call(['openaps-%s' % args.command ] + args.args))
-      except OSError as e:
-        print(e)
-        print("openaps: '{}' is not an openaps command. See 'openaps --help'.\n".format(args.command))
+    always_complete_options = False
+
+    def configure_parser(self, parser):
+        self.parser.add_argument("-c", nargs=2).completer = no_complete
+        self.parser.add_argument("-C", "--config", default=None).completer = no_complete
+        self.parser.add_argument(
+            "--version",
+            action="version",
+            version="%s %s" % ("%(prog)s", openaps.__version__),
+        ).completer = no_complete
+        self.parser.add_argument(
+            "command",
+            nargs="?",
+            # choices=['init', 'alias', 'help', 'get', 'suggest', 'enact'],
+            default=None,
+        ).completer = complete_args
+        self.parser.add_argument(
+            "args", nargs=argparse.REMAINDER
+        ).completer = complete_args
+
+    def run(self, args):
+        if args.config:
+            os.environ["OPENAPS_CONFIG"] = args.config
+            os.chdir(os.path.dirname(args.config))
+        if args.command in ["help", None]:
+            self.parser.print_help()
+        elif builtins.is_builtin(args.command):
+            builtins.dispatch(args, self)
+        elif args.command in [
+            "get",
+            "suggest",
+        ]:
+            exit(call(["openaps-%s" % args.command] + args.args))
+        elif args.command:
+            try:
+                exit(call(["openaps-%s" % args.command] + args.args))
+            except OSError as e:
+                print(e)
+                print(
+                    "openaps: '{}' is not an openaps command. See 'openaps --help'.\n".format(
+                        args.command
+                    )
+                )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     app = BaseApp(None)
-    app( )
+    app()
     sys.exit(0)
-

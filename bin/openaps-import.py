@@ -15,76 +15,87 @@ from openaps import uses
 
 import pkg_resources
 
-def get_importable ( ):
-  mods = dict( )
-  for entry in pkg_resources.iter_entry_points('openaps.importable'):
-    mod = entry.load( )
-    name = mod.Exported.Configurable.prefix
-    mods[name] = mod.Exported.Configurable
-  return mods
 
-class ImportToolApp (cli.ConfigApp):
-  """ openaps-import - import openaps configuration
+def get_importable():
+    mods = dict()
+    for entry in pkg_resources.iter_entry_points("openaps.importable"):
+        mod = entry.load()
+        name = mod.Exported.Configurable.prefix
+        mods[name] = mod.Exported.Configurable
+    return mods
+
+
+class ImportToolApp(cli.ConfigApp):
+    """ openaps-import - import openaps configuration
   Import configuration.
 
   Example workflow:
 
 
   openaps -C /path/to/another/openaps.ini device show --json ns-upload | openaps import -
-  """
+    """
 
-  name = 'import'
-  MAP = get_importable( )
-  # MAP = dict(vendor=Vendor, device=Device, report=Report, alias=Alias)
-  def configure_parser (self, parser):
-    self.read_config( )
-    # parser.add_argument('--ini')
-    # parser.add_argument('--json')
-    parser.add_argument('--list', '-l', default=False, action='store_true', help="Just list types")
-    parser.add_argument('input', default='-', nargs='?', type=argparse.FileType('r'), help="Read from stdin  ")
+    name = "import"
+    MAP = get_importable()
+    # MAP = dict(vendor=Vendor, device=Device, report=Report, alias=Alias)
+    def configure_parser(self, parser):
+        self.read_config()
+        # parser.add_argument('--ini')
+        # parser.add_argument('--json')
+        parser.add_argument(
+            "--list", "-l", default=False, action="store_true", help="Just list types"
+        )
+        parser.add_argument(
+            "input",
+            default="-",
+            nargs="?",
+            type=argparse.FileType("r"),
+            help="Read from stdin  ",
+        )
 
-  def prolog (self):
-    super(ImportToolApp, self).prolog( )
+    def prolog(self):
+        super(ImportToolApp, self).prolog()
 
-  def epilog (self):
-    super(ImportToolApp, self).epilog( )
+    def epilog(self):
+        super(ImportToolApp, self).epilog()
 
-  def Make (self, configurable):
-    Configurable = self.MAP.get(configurable.get('type'), None)
-    if not Configurable:
-      print("UNKNOWN TYPE", configurable.get('type'))
-      print(configurable)
-      raise Exception("UNKNOWN TYPE %s" % configurable.get('type'))
-    name = configurable.get('name')
-    required = [ name ]
-    core = configurable.get(name)
-    for field in Configurable.required:
-      if field != 'name':
-        required.append(configurable.get(field, core.get(field)))
+    def Make(self, configurable):
+        Configurable = self.MAP.get(configurable.get("type"), None)
+        if not Configurable:
+            print("UNKNOWN TYPE", configurable.get("type"))
+            print(configurable)
+            raise Exception("UNKNOWN TYPE %s" % configurable.get("type"))
+        name = configurable.get("name")
+        required = [name]
+        core = configurable.get(name)
+        for field in Configurable.required:
+            if field != "name":
+                required.append(configurable.get(field, core.get(field)))
 
-    inst = Configurable.FromImport(configurable, self.config)
-    # inst = Configurable(*required)
-    extra = configurable.get('extra', {})
-    if hasattr(inst, 'extra'):
-      inst.extra.fields = extra
-    return inst
-  def run (self, args):
-    # print(self.inputs)
-    if args.list:
-      for key in list(self.MAP.keys( )):
-        print(key)
-      return self.MAP
-    candidates = json.load(args.input)
-    if not isinstance(candidates, list):
-      candidates = [ candidates ]
-    for candidate in candidates:
-      incoming = self.Make(candidate)
-      incoming.store(self.config)
-      self.config.save( )
-      print(incoming.format_url( ))
+        inst = Configurable.FromImport(configurable, self.config)
+        # inst = Configurable(*required)
+        extra = configurable.get("extra", {})
+        if hasattr(inst, "extra"):
+            inst.extra.fields = extra
+        return inst
 
-if __name__ == '__main__':
+    def run(self, args):
+        # print(self.inputs)
+        if args.list:
+            for key in list(self.MAP.keys()):
+                print(key)
+            return self.MAP
+        candidates = json.load(args.input)
+        if not isinstance(candidates, list):
+            candidates = [candidates]
+        for candidate in candidates:
+            incoming = self.Make(candidate)
+            incoming.store(self.config)
+            self.config.save()
+            print(incoming.format_url())
+
+
+if __name__ == "__main__":
 
     app = ImportToolApp(None)
-    app( )
-
+    app()
