@@ -1,11 +1,11 @@
 
 
-import add, remove, show
+from . import add, remove, show
 
 from openaps.cli.subcommand import Subcommand
 from openaps.cli.commandmapapp import CommandMapApp
 
-from vendor import Vendor
+from .vendor import Vendor
 
 def get_plugins (conf):
   return Vendor.FromConfig(conf)
@@ -23,8 +23,7 @@ class VendorAction (Subcommand):
 
   def setup_application (self):
     self.vendors = get_vendor_map(self.config)
-    choices = self.vendors.keys( )
-    choices.sort( )
+    choices = sorted(list(self.vendors.keys( )))
     self.parser.add_argument('name', choices=choices)
     super(VendorAction, self).setup_application( )
 

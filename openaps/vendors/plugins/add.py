@@ -3,7 +3,7 @@
 Add a new vendor plugin to openaps-environment.
 """
 
-from vendor import Vendor
+from .vendor import Vendor
 
 def configure_app (app, parser):
   parser._actions[-1].choices = None

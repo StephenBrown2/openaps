@@ -24,8 +24,7 @@ def complete_args (prefix, parsed_args, action, **kwargs):
   # argcomplete.debug("COMP_POINT", point)
   argcomplete.debug("parsed_args", parsed_args)
   if parsed_args.command is None:
-    others = builtins.get_builtins( ).keys( ) + COMMON_COMMANDS
-    others.sort( )
+    others = sorted(list(builtins.get_builtins( ).keys( )) + COMMON_COMMANDS)
     return [ ] or action.choices or others
   # if True or parsed_args.command not in ['help', None]:
   # return [ 'debug' ]
@@ -38,7 +37,7 @@ def complete_args (prefix, parsed_args, action, **kwargs):
   os.environ['COMP_LINE'] = compline
   os.environ['COMP_POINT'] = str(len(compline))
   os.environ['PROGNAME'] = other_prog
-  argcomplete.debug("subshell", shell_cmd, os.environ.keys( ))
+  argcomplete.debug("subshell", shell_cmd, list(os.environ.keys( )))
   os.execvp(shell_cmd[0], shell_cmd[1:])
   sys.exit(0)
 

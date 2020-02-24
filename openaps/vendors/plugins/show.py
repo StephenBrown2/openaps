@@ -5,7 +5,7 @@ Show/list vendor plugins
 """
 
 from openaps.cli import helpers
-from vendor import Vendor
+from .vendor import Vendor
 
 def configure_app (app, parser):
   parser.set_defaults(name='*')

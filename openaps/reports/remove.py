@@ -1,7 +1,7 @@
 """
 remove - remove a device configuration
 """
-from report import Report
+from .report import Report
 import sys
 def main (args, app):
   for report in Report.FromConfig(app.config):

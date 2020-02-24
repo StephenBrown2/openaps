@@ -20,7 +20,7 @@ class Configurable (object):
   def get (self, k, *args):
     return self.fields.get(k, *args)
   def items (self):
-    return self.fields.items( )
+    return list(self.fields.items( ))
 
   def format_url (self):
     return self.url_template.format(name=self.name, **self.fields)
@@ -29,7 +29,7 @@ class Configurable (object):
     if not config.has_section(self.section_name( )):
       config.add_device(self)
     else:
-      for k, v in self.items( ):
+      for k, v in list(self.items( )):
         config.set(self.section_name( ), k, v)
 
   def remove (self, config):

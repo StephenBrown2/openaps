@@ -2,7 +2,7 @@
 """
 remove - remove an alias
 """
-from alias import Alias
+from .alias import Alias
 def main (args, app):
   for alias in Alias.FromConfig(app.config):
     if args.name == alias.name:

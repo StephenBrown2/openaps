@@ -1,10 +1,10 @@
 
-import add, remove, show
+from . import add, remove, show
 
 from openaps.cli.subcommand import Subcommand
 from openaps.cli.commandmapapp import CommandMapApp
 
-from alias import Alias
+from .alias import Alias
 
 def get_alias_map (conf):
   aliases = { }
@@ -16,8 +16,7 @@ class AliasAction (Subcommand):
   def setup_application (self):
 
     self.aliases = get_alias_map(self.config)
-    choices = self.aliases.keys( )
-    choices.sort( )
+    choices = sorted(list(self.aliases.keys( )))
     self.parser.add_argument('name', choices=choices)
     super(AliasAction, self).setup_application( )
 
@@ -39,7 +38,7 @@ class Exported (object):
     return Klass.Configurable.FromConfig(conf)
   @classmethod
   def get_names(Klass, conf):
-    return Klass.get_map(conf).keys( )
+    return list(Klass.get_map(conf).keys( ))
   @classmethod
   def get_map(Klass, conf):
     return get_alias_map(conf)

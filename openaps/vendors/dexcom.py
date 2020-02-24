@@ -258,7 +258,7 @@ class glucose (scan):
     """ turn everything into a string """
     out = [ ]
     for item in data:
-      line = map(str, [ item[field] for field in self.TEXT_COLUMNS ])
+      line = list(map(str, [ item[field] for field in self.TEXT_COLUMNS ]))
       out.append(' '.join(line))
     return "\n".join(out)
   def prerender_json (self, data):
@@ -340,7 +340,7 @@ class GapFiller (object):
     self.since = None
     self.records = [ ]
     rel = dict(hours=params.get('hours', 0), minutes=params.get('minutes', 0), seconds=params.get('seconds', 0), microseconds=params.get('microseconds', 0))
-    for x in rel.keys( ):
+    for x in list(rel.keys( )):
       if rel[x] is None:
         rel.pop(x)
 
@@ -532,7 +532,7 @@ class oref0_glucose (glucose):
     iter_glucose = self.get_glucose_data(params, args)
     iter_sensor  = self.get_sensor_data(params, args)
     template = dict(device="openaps://{}/{}".format(socket.gethostname(),self.device.name), type='sgv')
-    for egv, raw in itertools.izip_longest(iter_glucose, iter_sensor):
+    for egv, raw in itertools.zip_longest(iter_glucose, iter_sensor):
       item = dict(**template)
       if egv:
         # trend = getattr(egv, 'full_trend', self.arrow_to_trend(egv.trend_arrow))
@@ -724,12 +724,12 @@ class sensor_insertions (scan):
     """ turn everything into a string """
     out = [ ]
     for item in data:
-      line = map(str, [
+      line = list(map(str, [
         item['system_time']
       , item['insertion_time']
       , item['session_state']
       , item['display_time']
-      ])
+      ]))
       out.append(' '.join(line))
     return "\n".join(out)
   def prerender_json (self, data):

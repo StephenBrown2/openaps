@@ -271,7 +271,7 @@ class key_presser (MedtronicTask):
 
       pressed = self.pump.model.press_key(press)
       results.append(pressed)
-    successes = filter(lambda x: x['received'], results)
+    successes = [x for x in results if x['received']]
     completed = len(successes) == len(recipe)
     response = dict(results=results, completed=completed)
 

@@ -3,7 +3,7 @@
 add   - add an alias
 """
 
-from alias import Alias
+from .alias import Alias
 
 def configure_app (app, parser):
   parser._actions[-1].choices = None

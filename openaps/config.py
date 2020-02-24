@@ -1,5 +1,5 @@
 
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 import re
 import os
 
@@ -25,12 +25,12 @@ class Config (SafeConfigParser):
         lines.append(line)
       if self._defaults:
           write("[%s]\n" % DEFAULTSECT)
-          for (key, value) in self._defaults.items():
+          for (key, value) in list(self._defaults.items()):
               write("%s = %s\n" % (key, str(value).replace('\n', '\n\t')))
           write("\n")
       for section in self._sections:
           write("[%s]\n" % section)
-          for (key, value) in self._sections[section].items():
+          for (key, value) in list(self._sections[section].items()):
               if key == "__name__":
                   continue
               if (value is not None) or (self._optcre == self.OPTCRE):
@@ -41,13 +41,13 @@ class Config (SafeConfigParser):
   def add_device (self, device):
     section = device.section_name( )
     self.add_section(section)
-    for k, v in device.items( ):
+    for k, v in list(device.items( )):
       self.set(section, k, v)
     if 'extra' in device.fields and getattr(device, 'extra', None):
       extra = Config( )
       extra.set_ini_path(device.fields['extra'])
       extra.add_section(section)
-      for k, v in device.extra.items( ):
+      for k, v in list(device.extra.items( )):
         extra.set(section, k, v)
       extra.save( )
 

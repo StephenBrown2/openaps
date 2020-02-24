@@ -1,8 +1,8 @@
-import add, remove, show
+from . import add, remove, show
 
 from openaps.cli.subcommand import Subcommand
 from openaps import vendors
-from device import Device
+from .device import Device
 
 def setup_application (app, parser):
   print("YYY CONFIG", app.config)
@@ -22,8 +22,7 @@ def get_device_map (conf):
 
 class DeviceConfig (Subcommand):
   def setup_application (self):
-    choices = self.parent.devices.keys( )
-    choices.sort( )
+    choices = sorted(list(self.parent.devices.keys( )))
     self.parser.add_argument('name', choices=choices)
     # self.devices = get_devices(self.parent.config)
     getattr(self.method, 'configure_app', self._no_op_setup)(self, self.parser)

@@ -71,7 +71,7 @@ class ImportToolApp (cli.ConfigApp):
   def run (self, args):
     # print(self.inputs)
     if args.list:
-      for key in self.MAP.keys( ):
+      for key in list(self.MAP.keys( )):
         print(key)
       return self.MAP
     candidates = json.load(args.input)

@@ -1,10 +1,10 @@
 
-import add, remove, show, invoke
+from . import add, remove, show, invoke
 
 from openaps.cli.subcommand import Subcommand
 from openaps.cli.commandmapapp import CommandMapApp
 
-from report import Report
+from .report import Report
 
 def get_devices (conf):
   return Report.FromConfig(conf)
@@ -23,8 +23,7 @@ class ReportAction (Subcommand):
   def setup_application (self):
 
     self.reports = get_report_map(self.config)
-    choices = self.reports.keys( )
-    choices.sort( )
+    choices = sorted(list(self.reports.keys( )))
     self.parser.add_argument('report', choices=choices)
     super(ReportAction, self).setup_application( )
 

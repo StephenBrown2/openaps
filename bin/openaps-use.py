@@ -31,9 +31,8 @@ class UseToolApp (cli.ConfigApp):
     available = devices.get_device_map(self.config)
     self.devices = available
     self.reporters = reporters.get_reporter_map( )
-    choices = available.keys( )
-    choices.sort( )
-    self.parser.add_argument('--format', choices=self.reporters.keys(), default='json')
+    choices = sorted(list(available.keys( )))
+    self.parser.add_argument('--format', choices=list(self.reporters.keys()), default='json')
     self.parser.add_argument('--output', type=argparse.FileType('w'), default='-')
     self.parser.add_argument('--version', action='version', version='%s %s' % ('%(prog)s', openaps.__version__))
 

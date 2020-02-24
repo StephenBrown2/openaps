@@ -4,7 +4,7 @@ show   - show all aliases
 """
 
 from openaps.cli import helpers
-from alias import Alias
+from .alias import Alias
 
 def configure_app (app, parser):
   parser.set_defaults(name='*')

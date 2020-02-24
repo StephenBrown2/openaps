@@ -3,8 +3,8 @@ add    - add a new report configuration
 """
 from openaps import uses
 from openaps.devices.device import Device
-from report import Report
-import reporters
+from .report import Report
+from . import reporters
 import sys
 
 def configure_app (app, parser):
@@ -23,7 +23,7 @@ def main (args, app):
   report = Report(report=args.report, device=args.device, reporter=args.reporter, use=args.use)
   task = app.actions.selected(args).usages.commands[args.device].method.commands[report.fields['use']]
   params = task.method.to_ini(args)
-  for k, v in params.items( ):
+  for k, v in list(params.items( )):
     report.add_option(k, str(v))
   report.store(app.config)
   app.config.save( )

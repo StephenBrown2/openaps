@@ -39,7 +39,7 @@ class Formatter (object):
               expected = act.const
               expected = act.default
               found = config.get(act.dest)
-              if type(act) is argparse._StoreFalseAction:
+              if isinstance(act, argparse._StoreFalseAction):
                 expected = True
                 found = found
 

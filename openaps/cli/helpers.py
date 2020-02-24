@@ -17,7 +17,7 @@ def format_ini (report):
   config.add_device(report)
 
   if hasattr(report, 'extra'):
-    for k, v in report.extra.fields.items( ):
+    for k, v in list(report.extra.fields.items( )):
       config.set(report.section_name( ), k, v)
   return config.fmt( )
 

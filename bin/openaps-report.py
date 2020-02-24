@@ -49,8 +49,7 @@ class ReportToolApp (cli.ConfigApp):
     self.read_config( )
     available = devices.get_device_map(self.config)
     self.devices = available
-    choices = available.keys( )
-    choices.sort( )
+    choices = sorted(list(available.keys( )))
     self.parser.add_argument('--version', action='version', version='%s %s' % ('%(prog)s', openaps.__version__))
 
     self.configure_reports( )

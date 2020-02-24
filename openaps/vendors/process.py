@@ -9,7 +9,7 @@ import subprocess
 import json
 
 import argparse
-from plugins.vendor import Vendor
+from .plugins.vendor import Vendor
 from openaps.uses.use import Use
 from openaps.uses.registry import Registry
 

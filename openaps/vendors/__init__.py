@@ -1,10 +1,10 @@
 
-import dexcom, medtronic, process, units
+from . import dexcom, medtronic, process, units
 
 from openaps.cli.subcommand import Subcommand
 from openaps.cli.commandmapapp import CommandMapApp
 
-from plugins.vendor import Vendor
+from .plugins.vendor import Vendor
 
 class ChangeVendorApp (Subcommand):
   """
@@ -21,7 +21,7 @@ def get_vendors ( ):
 def get_map (config=None):
   vendors = all_vendors(config)
   names = [ v.__name__.split('.').pop( ) for v in vendors ]
-  return dict(zip(names, vendors))
+  return dict(list(zip(names, vendors)))
 
 def lookup (name, config=None):
   return get_map(config)[name]
@@ -29,7 +29,7 @@ def lookup (name, config=None):
 def lookup_dotted (name, config=None):
   vendors = all_vendors(config)
   names = [ v.__name__ for v in vendors ]
-  return dict(zip(names, vendors))[name]
+  return dict(list(zip(names, vendors)))[name]
 
 
 def all_vendors (config=None):

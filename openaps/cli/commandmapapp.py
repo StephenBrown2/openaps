@@ -1,5 +1,5 @@
 
-from subcommand import Subcommand
+from .subcommand import Subcommand
 
 class CommandMapApp (object):
 

@@ -113,8 +113,7 @@ These are the devices openaps knows about:\
   def get_help (self):
     return """Name and description:"""
   def get_commands (self):
-    choices = self.devices.keys( )
-    choices.sort( )
+    choices = sorted(list(self.devices.keys( )))
     return [ self.devices[choice] for choice in choices ]
 
 def get_uses_for (device, parent=None):
