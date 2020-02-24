@@ -1,3 +1,4 @@
+
 class Convert(object):
     """
         How to convert from mg/dL (World Wide format) to mmol/L (mostly UK
@@ -20,4 +21,4 @@ class Convert(object):
 
     @classmethod
     def mg_dl_to_mmol_l(klass, mg_dl):
-        return mg_dl / klass.MMOLL_CONVERT_FACTOR
+        return mg_dl // klass.MMOLL_CONVERT_FACTOR
