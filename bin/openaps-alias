@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
 
 import openaps
@@ -27,7 +27,7 @@ class AliasApp (cli.ConfigApp):
     super(AliasApp, self).epilog( )
 
   def run (self, args):
-    # print self.commands
+    # print(self.commands)
     app = self.commands.selected(args)
     output = app(args, self)
 

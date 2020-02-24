@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
 
 import sys
@@ -52,8 +52,8 @@ class ImportToolApp (cli.ConfigApp):
   def Make (self, configurable):
     Configurable = self.MAP.get(configurable.get('type'), None)
     if not Configurable:
-      print "UNKNOWN TYPE", configurable.get('type')
-      print configurable
+      print("UNKNOWN TYPE", configurable.get('type'))
+      print(configurable)
       raise Exception("UNKNOWN TYPE %s" % configurable.get('type'))
     name = configurable.get('name')
     required = [ name ]
@@ -69,10 +69,10 @@ class ImportToolApp (cli.ConfigApp):
       inst.extra.fields = extra
     return inst
   def run (self, args):
-    # print self.inputs
+    # print(self.inputs)
     if args.list:
       for key in self.MAP.keys( ):
-        print key
+        print(key)
       return self.MAP
     candidates = json.load(args.input)
     if not isinstance(candidates, list):
@@ -81,7 +81,7 @@ class ImportToolApp (cli.ConfigApp):
       incoming = self.Make(candidate)
       incoming.store(self.config)
       self.config.save( )
-      print incoming.format_url( )
+      print(incoming.format_url( ))
 
 if __name__ == '__main__':
 

@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
 """
 
@@ -158,10 +158,9 @@ openaps report commands map openaps use commands to filenames:
     elif args.command:
       try:
         exit(call(['openaps-%s' % args.command ] + args.args))
-      except (OSError), e:
-        print e
-        print """openaps: '{command}' is not an openaps command. See 'openaps --help'.
-        """.format(command=args.command)
+      except OSError as e:
+        print(e)
+        print("openaps: '{}' is not an openaps command. See 'openaps --help'.\n".format(args.command))
 
 
 if __name__ == '__main__':

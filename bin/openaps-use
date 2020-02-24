@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
 
 import sys
@@ -50,7 +50,7 @@ class UseToolApp (cli.ConfigApp):
     super(UseToolApp, self).epilog( )
 
   def run (self, args):
-    # print self.inputs
+    # print(self.inputs)
     app = self.commands.selected(args)
     task = app.method.selected(args)
     reporter = Output(args, self.reporters.get(args.format), task)

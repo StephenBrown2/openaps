@@ -1,6 +1,5 @@
-
 """
-remove - remove a  device configuration
+remove - remove a device configuration
 """
 from openaps import vendors
 from openaps.devices.device import Device
@@ -10,6 +9,6 @@ def main (args, app):
     if args.name == device.name:
       app.config.remove_device(device)
       app.config.save( )
-      print 'removed', device.format_url( )
+      print('removed', device.format_url( ))
       break
 

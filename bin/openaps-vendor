@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # PYTHON_ARGCOMPLETE_OK
 
 import sys, os, os.path
@@ -27,7 +27,7 @@ class VendorApp (cli.ConfigApp):
     self.commands.configure_commands(self.parser)
 
   def run (self, args):
-    # print self.commands
+    # print(self.commands)
     app = self.commands.selected(args)
     app(args, self)
 
