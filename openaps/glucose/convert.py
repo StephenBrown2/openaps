@@ -20,4 +20,4 @@ class Convert:
 
     @classmethod
     def mg_dl_to_mmol_l(klass, mg_dl):
-        return mg_dl // klass.MMOLL_CONVERT_FACTOR
+        return mg_dl / klass.MMOLL_CONVERT_FACTOR

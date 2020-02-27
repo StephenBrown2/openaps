@@ -27,7 +27,7 @@ setup(
         "argcomplete",
         "gitpython",
         "decocare >= 0.1.0",
-        "dexcom_reader >= 0.1.8",
+        "dexcom_reader >= 0.2.0",
     ],
     extras_require={
         "testing": ["pytest"],

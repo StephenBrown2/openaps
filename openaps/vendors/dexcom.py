@@ -574,7 +574,7 @@ def fix_display_time(display_time=None, **kwds):
 def adjust_nightscout_dates(item):
     dt = parse(item["display_time"])
     # http://stackoverflow.com/questions/5022447/converting-date-from-python-to-javascript
-    date = (time.mktime(dt.timetuple()) * 1000) + (dt.microsecond // 1000.0)
+    date = (time.mktime(dt.timetuple()) * 1000) + (dt.microsecond / 1000.0)
     item.update(dateString=item["display_time"], date=date)
     return item
 
@@ -638,7 +638,7 @@ class oref0_glucose(glucose):
         return adjust_nightscout_dates(item)
         dt = parse(item["display_time"])
         # http://stackoverflow.com/questions/5022447/converting-date-from-python-to-javascript
-        date = (time.mktime(dt.timetuple()) * 1000) + (dt.microsecond // 1000.0)
+        date = (time.mktime(dt.timetuple()) * 1000) + (dt.microsecond / 1000.0)
         item.update(dateString=item["display_time"], date=date)
         return item
 
