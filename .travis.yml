@@ -4,7 +4,6 @@ language: python
 python:
   - "3.5"  # Need to support debian stretch for edison 32-bit installs
 install:
-  - python setup.py install
-  - pip install pytest
+  - pip install .[testing]
 script:
   - make ci-test

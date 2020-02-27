@@ -26,9 +26,12 @@ setup(
         "python-dateutil",
         "argcomplete",
         "gitpython",
-        "decocare > 0.0.26",
+        "decocare >= 0.1.0",
         "dexcom_reader >= 0.1.8",
     ],
+    extras_require={
+        "testing": ["pytest"],
+    },
     dependency_links=[
         "http://github.com/openaps/dexcom_reader/tarball/master#egg=dexcom_reader-master",
         # 'https://github.com/bewest/dexcom_reader/tarball/master#egg=dexcom_reader-0.0.7-dev-1',
